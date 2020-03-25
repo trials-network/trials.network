@@ -12,8 +12,8 @@ A blockchain stack could improve co-operation at international level and across 
 
 A user friendly UI can also help overburdened personnel do the data entry faster and with fewer errors.
 
-Main website: https://results.network
-Development wiki: https://github.com/trials-network/trials.network/wiki
+* Main website: https://results.network
+* Development wiki: https://github.com/trials-network/trials.network/wiki
 
 # Related News
 
