@@ -1,6 +1,6 @@
 # COVID-19 Parallel Clinical Trials Platform
 
-With [trials.network](https://trials.network), we could improve cooperation at international level and across institutions thus speeding up aggregation of results and enhancing reliability and security.
+A blockchain-base full stack clinical trials solution, to improve trials efficiency, save time, and hence lives. 
 
 ## The Problem
 
@@ -14,17 +14,41 @@ With [trials.network](https://trials.network), we could improve cooperation at i
 
 ## The Solution
 
-A blockchain-base full stack clinical trials solution, to improve trials efficiency, save time, and hence lives. 
-
 **Efficient data entry** Streamlined and efficient data entry via modern application, minimizing overhead for often over-stretched personnel.
 
 **Better trials coordination** Improved coordination of trials, allows to enlarge the enrollment by involving multiple testing sites in parallel. The platforms gives a bird-eye overview of treatments, and spreads opportunities for less popular candidates. 
 
 **Faster data analysis** Efficient analysis of results via real-time analytics and automatic clustering  into relevant cohorts. Older results are automatically reusable in newer trials for pairwise or groupwise comparisons.
 
+# Components
+
+## Mobile App
+Perform required data entry with minimal overhead while respecting privacy and within a tight authorization framework.
+* Android/iOS/Web support
+* Efficient offline data entry
+* Robust authentication
+
+## Centralized Data Analytics Engine
+Flexible set-up with low level, but anonymized, records, aggregated KPIs or advanced analytics continuously applied to existing and new data.
+* Standardized data-set across sites/ trials
+* API data access + centralized analytics
+* Modern web interface
+
+## Admin Front-End
+Study site level as well as centralized control on authorizations and  configuration. 
+* Tiered authorizations
+* Tiered configuration
+* Robust authentication
+
+## Blockchain Infrastructure
+Decentralized storage and computation infrastructure, while maintaining a high degree of security and trust on stored events:
+* Strong guarantees on authorship and submission timestamps
+* Distributed data store and analytics: no-one holds the keys
+* Strong security
+
 # Implementation
 
-See the [wiki](https://github.com/trials-network/trials.network/wiki)
+See also the [development wiki](https://github.com/trials-network/trials.network/wiki)
 
 # Related News
 
