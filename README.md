@@ -1,19 +1,30 @@
-# Tools to Help with International Co-operation of Clinical Trials
+# COVID-19 Parallel Clinical Trials Platform
 
-At the moment each country/institution is performing clinical trials independently, sharing the results at the end of the trials. This is a relatively slow and inefficient process. 
+With [trials.network](https://trials.network), we could improve cooperation at international level and across institutions thus speeding up aggregation of results and enhancing reliability and security.
 
-Results are reinforced by serially replicating the trials elsewhere. 
+## The Problem
 
-Clinical trials can be particularly difficult in Covid-19 cases since most patient recover spontaneously regardless of cure. The chance of false positives is high, particularly for antivirals that could help in earlier stages. This requires larger tests that can be more easily achieved via co-ordination.
+**Lack of Coordination**   At the moment each country/institution is performing clinical trials independently, sharing the results at the end of the trials. This is a relatively slow and inefficient process.
 
-In addition several different treatments have to be tested in parallel, if each one is performed vs a control set, this creates futher inefficiencies. 
+**Serial vs Parallel Testing**  Results are reinforced by serially replicating the trials elsewhere.
 
-A blockchain stack could improve co-operation at international level and across institutions thus speeding up aggregation of results and improving reliability and security.
+**Narrow clustering**   In Covid-19 cases since most patient recover spontaneously and the chance of false positives is high, particularly for treatments that could help in earlier stages. This requires larger tests that can be more easily achieved via coordination.
 
-A user friendly UI can also help overburdened personnel do the data entry faster and with fewer errors.
+**Lack of low level data re-use**  While clinical trial results are shared, the low level records are not available, even though low level records of past trials could be relevant for newer and/or similar trials. 
 
-* Main website: https://results.network
-* Development wiki: https://github.com/trials-network/trials.network/wiki
+## The Solution
+
+A blockchain-base full stack clinical trials solution, to improve trials efficiency, save time, and hence lives. 
+
+**Efficient data entry** Streamlined and efficient data entry via modern application, minimizing overhead for often over-stretched personnel.
+
+**Better trials coordination** Improved coordination of trials, allows to enlarge the enrollment by involving multiple testing sites in parallel. The platforms gives a bird-eye overview of treatments, and spreads opportunities for less popular candidates. 
+
+**Faster data analysis** Efficient analysis of results via real-time analytics and automatic clustering  into relevant cohorts. Older results are automatically reusable in newer trials for pairwise or groupwise comparisons.
+
+# Implementation
+
+See the [wiki](https://github.com/trials-network/trials.network/wiki)
 
 # Related News
 
