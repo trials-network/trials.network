@@ -75,51 +75,69 @@ class _NameScreenState extends State<NameScreen> {
                             return null;
                           }),
                       SizedBox(height: 30),
-                      Text('Gender'),
-                      DropdownButtonFormField(
-                        value: gender,
-                        hint: const Text('Select'),
-                        onChanged: (value) {
-                          setState(() {
-                            gender = value;
-                          });
-                        },
-                        items: GENDERS
-                            .map<DropdownMenuItem<String>>((String value) {
-                          return DropdownMenuItem<String>(
-                              value: value, child: Text(value));
-                        }).toList(),
-                        validator: (value) {
-                          if (value == null) {
-                            return 'Please select gender';
-                          }
-                          return null;
-                        },
-                        autovalidate: gender != null,
-                      ),
+                      Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: <Widget>[
+                            Column(
+                              mainAxisSize: MainAxisSize.min,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Text('Gender'),
+                                SizedBox(
+                                    width: 150,
+                                    child: DropdownButtonFormField(
+                                      value: gender,
+                                      hint: const Text('Select'),
+                                      onChanged: (value) {
+                                        setState(() {
+                                          gender = value;
+                                        });
+                                      },
+                                      items: GENDERS
+                                          .map<DropdownMenuItem<String>>(
+                                              (String value) {
+                                        return DropdownMenuItem<String>(
+                                            value: value, child: Text(value));
+                                      }).toList(),
+                                      validator: (value) {
+                                        if (value == null) {
+                                          return 'Please select gender';
+                                        }
+                                        return null;
+                                      },
+                                      autovalidate: gender != null,
+                                    ))
+                              ],
+                            ),
+                            Column(children: [
+                              Text('Ethnicity'),
+                              SizedBox(
+                                  width: 150,
+                                  child: DropdownButtonFormField(
+                                    value: ethnicity,
+                                    hint: const Text('Select'),
+                                    onChanged: (value) {
+                                      setState(() {
+                                        ethnicity = value;
+                                      });
+                                    },
+                                    items: ETHNICITIES
+                                        .map<DropdownMenuItem<String>>(
+                                            (String value) {
+                                      return DropdownMenuItem<String>(
+                                          value: value, child: Text(value));
+                                    }).toList(),
+                                    validator: (value) {
+                                      if (value == null) {
+                                        return 'Please select ethnicity';
+                                      }
+                                      return null;
+                                    },
+                                    autovalidate: ethnicity != null,
+                                  ))
+                            ])
+                          ]),
                       SizedBox(height: 30),
-                      Text('Ethnicity'),
-                      DropdownButtonFormField(
-                        value: ethnicity,
-                        hint: const Text('Select'),
-                        onChanged: (value) {
-                          setState(() {
-                            ethnicity = value;
-                          });
-                        },
-                        items: ETHNICITIES
-                            .map<DropdownMenuItem<String>>((String value) {
-                          return DropdownMenuItem<String>(
-                              value: value, child: Text(value));
-                        }).toList(),
-                        validator: (value) {
-                          if (value == null) {
-                            return 'Please select ethnicity';
-                          }
-                          return null;
-                        },
-                        autovalidate: ethnicity != null,
-                      ),
                       Row(
                         children: <Widget>[
                           Expanded(
