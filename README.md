@@ -1,6 +1,6 @@
 # COVID-19 Parallel Clinical Trials Platform
 
-A blockchain-base full stack clinical trials solution, to improve trials efficiency, save time, and hence lives. 
+A blockchain-based full-stack clinical trials solution, to improve trials efficiency, save time, and ultimately, lives. 
 
 ## The Problem
 
@@ -8,13 +8,13 @@ A blockchain-base full stack clinical trials solution, to improve trials efficie
 
 **Serial vs Parallel Testing**  Results are reinforced by serially replicating the trials elsewhere.
 
-**Narrow clustering**   In Covid-19 cases since most patient recover spontaneously and the chance of false positives is high, particularly for treatments that could help in earlier stages. This requires larger tests that can be more easily achieved via coordination.
+**Narrow clustering**   In Covid-19 cases since most patients recover spontaneously and the chance of false positives is high, particularly for treatments that could help in earlier stages. This requires larger tests that can be more easily achieved via coordination.
 
 **Lack of low level data re-use**  While clinical trial results are shared, the low level records are not available, even though low level records of past trials could be relevant for newer and/or similar trials. 
 
 ## The Solution
 
-**Efficient data entry** Streamlined and efficient data entry via modern application, minimizing overhead for often over-stretched personnel.
+**Efficient data entry** Streamlined and efficient data entry via a modern application, minimizing overhead for often over-stretched personnel.
 
 **Better trials coordination** Improved coordination of trials, allows to enlarge the enrollment by involving multiple testing sites in parallel. The platforms gives a bird-eye overview of treatments, and spreads opportunities for less popular candidates. 
 
