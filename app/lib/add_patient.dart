@@ -36,12 +36,13 @@ class NameScreen extends StatefulWidget {
 }
 
 const ETHNICITIES = <String>['Asian', 'Black', 'Mixed', 'Other', 'White'];
+const GENDERS = <String>['Female', 'Male', 'Other'];
 
 class _NameScreenState extends State<NameScreen> {
   final _formKey = GlobalKey<FormState>();
 
   String gender;
-  String ethnicity; // = 'Select';
+  String ethnicity;
 
   @override
   Widget build(BuildContext context) {
@@ -56,57 +57,69 @@ class _NameScreenState extends State<NameScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       TextFormField(
-                        decoration: const InputDecoration(labelText: 'Name'),
-                      ),
+                          decoration: const InputDecoration(labelText: 'Name'),
+                          validator: (value) {
+                            if (value.isEmpty) {
+                              return 'Please enter the patient\'s name';
+                            }
+                            return null;
+                          }),
                       SizedBox(height: 10),
                       TextFormField(
-                        decoration:
-                            const InputDecoration(labelText: 'Patient ID'),
-                      ),
+                          decoration:
+                              const InputDecoration(labelText: 'Patient ID'),
+                          validator: (value) {
+                            if (value.isEmpty) {
+                              return 'Please enter the patient\'s ID';
+                            }
+                            return null;
+                          }),
                       SizedBox(height: 30),
                       Text('Gender'),
-                      RadioListTile(
-                          title: const Text('Male'),
-                          value: 'Male',
-                          groupValue: gender,
-                          onChanged: (value) {
-                            setState(() {
-                              gender = value;
-                            });
-                          }),
-                      RadioListTile(
-                          title: const Text('Female'),
-                          value: 'Female',
-                          groupValue: gender,
-                          onChanged: (value) {
-                            setState(() {
-                              gender = value;
-                            });
-                          }),
-                      RadioListTile(
-                          title: const Text('Other'),
-                          value: 'Other',
-                          groupValue: gender,
-                          onChanged: (value) {
-                            setState(() {
-                              gender = value;
-                            });
-                          }),
+                      DropdownButtonFormField(
+                        value: gender,
+                        hint: const Text('Select'),
+                        onChanged: (value) {
+                          setState(() {
+                            gender = value;
+                          });
+                        },
+                        items: GENDERS
+                            .map<DropdownMenuItem<String>>((String value) {
+                          return DropdownMenuItem<String>(
+                              value: value, child: Text(value));
+                        }).toList(),
+                        validator: (value) {
+                          if (value == null) {
+                            return 'Please select gender';
+                          }
+                          return null;
+                        },
+                        autovalidate: gender != null,
+                      ),
                       SizedBox(height: 30),
                       Text('Ethnicity'),
-                      DropdownButton(
-                          value: ethnicity,
-                          onChanged: (value) {
-                            setState(() {
-                              ethnicity = value;
-                            });
-                          },
-                          items: ETHNICITIES
-                              .map<DropdownMenuItem<String>>((String value) {
-                            // return null;
-                            return DropdownMenuItem<String>(
-                                value: value, child: Text(value));
-                          }).toList()),
+                      DropdownButtonFormField(
+                        value: ethnicity,
+                        hint: const Text('Select'),
+                        onChanged: (value) {
+                          setState(() {
+                            ethnicity = value;
+                          });
+                        },
+                        items: ETHNICITIES
+                            .map<DropdownMenuItem<String>>((String value) {
+                          return DropdownMenuItem<String>(
+                              value: value, child: Text(value));
+                        }).toList(),
+                        validator: (value) {
+                          if (value == null) {
+                            return 'Please select ethnicity';
+                          }
+                          return null;
+                        },
+                        autovalidate: ethnicity != null,
+                      ),
                       Row(
                         children: <Widget>[
                           Expanded(
