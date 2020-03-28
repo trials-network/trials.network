@@ -1,8 +1,8 @@
 import React from "react";
-import "./App.css";
+import SignIn from './SignIn';
 
 function App() {
-  return <div className="App">trials.network</div>;
+  return <SignIn />;
 }
 
 export default App;
