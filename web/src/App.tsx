@@ -1,9 +1,10 @@
 import React from "react";
-import SignIn from "./SignIn";
-
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import green from "@material-ui/core/colors/green";
 import lightBlue from "@material-ui/core/colors/lightBlue";
+import SignIn from "./SignIn";
+import RegisterInstitution from './RegisterInstitution';
 
 const theme = createMuiTheme({
   palette: {
@@ -15,7 +16,16 @@ const theme = createMuiTheme({
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <SignIn />
+      <Router>
+        <Switch>
+        <Route path="/register-institution">
+            <RegisterInstitution />
+          </Route>
+          <Route path="/">
+            <SignIn />
+          </Route>
+        </Switch>
+      </Router>
     </ThemeProvider>
   );
 }

@@ -34,7 +34,7 @@ export default function SignIn() {
       <CssBaseline />
       <Paper className={classes.paper}>
         <Typography component="h1" variant="h5">
-          Sign in to trials.network
+          Register Institution
         </Typography>
         <form className={classes.form} noValidate>
           <TextField
@@ -42,10 +42,9 @@ export default function SignIn() {
             margin="normal"
             required
             fullWidth
-            id="email"
-            label="Email Address"
-            name="email"
-            autoComplete="email"
+            id="name"
+            label="Name"
+            name="name"
             autoFocus
           />
           <TextField
@@ -53,11 +52,38 @@ export default function SignIn() {
             margin="normal"
             required
             fullWidth
-            name="password"
-            label="Password"
-            type="password"
-            id="password"
-            autoComplete="current-password"
+            name="address1"
+            label="Address Line 1"
+            id="address1"
+            autoComplete="address-line1"
+          />
+          <TextField
+            variant="outlined"
+            margin="normal"
+            fullWidth
+            name="address2"
+            label="Address Line 2"
+            id="address2"
+            autoComplete="address-line2"
+          />
+          <TextField
+            variant="outlined"
+            margin="normal"
+            fullWidth
+            name="postcode"
+            label="Post Code"
+            id="postcode"
+            autoComplete="postal-code"
+          />
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            name="country"
+            label="Country"
+            id="country"
+            autoComplete="country-name"
           />
           <Button
             type="submit"
@@ -66,20 +92,11 @@ export default function SignIn() {
             color="primary"
             className={classes.submit}
           >
-            Sign In
+            Register
           </Button>
-          <Grid container>
-            <Grid item xs>
-              <Link href="#" variant="body2">
-                Enter proof of concept
-              </Link>
-            </Grid>
-            <Grid item>
-              <Link href="#" variant="body2">
-                Register an institution
-              </Link>
-            </Grid>
-          </Grid>
+          <Link href="#" variant="body2">
+            Go to Sign In instead
+          </Link>
         </form>
       </Paper>
     </Container>
