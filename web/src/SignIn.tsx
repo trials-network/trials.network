@@ -71,7 +71,7 @@ export default function SignIn() {
           </Button>
           <Grid container>
             <Grid item xs>
-              <Link href="#" variant="body2">
+              <Link to="/dashboard" component={RouterLink} variant="body2">
                 Enter proof of concept
               </Link>
             </Grid>

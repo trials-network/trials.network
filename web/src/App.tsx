@@ -5,6 +5,7 @@ import green from "@material-ui/core/colors/green";
 import lightBlue from "@material-ui/core/colors/lightBlue";
 import SignIn from "./SignIn";
 import RegisterInstitution from './RegisterInstitution';
+import Dashboard from './Dashboard';
 
 const theme = createMuiTheme({
   palette: {
@@ -20,6 +21,9 @@ function App() {
         <Switch>
         <Route path="/register-institution">
             <RegisterInstitution />
+          </Route>
+          <Route path="/dashboard">
+            <Dashboard />
           </Route>
           <Route path="/">
             <SignIn />
