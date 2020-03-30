@@ -18,7 +18,7 @@ export default function Dashboard() {
     <Shell>
       <Container maxWidth="lg" className={classes.container}>
         <Typography variant="body1">
-          Here we could have some stats/charts
+          TODO
         </Typography>
       </Container>
     </Shell>

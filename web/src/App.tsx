@@ -4,8 +4,9 @@ import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import green from "@material-ui/core/colors/green";
 import lightBlue from "@material-ui/core/colors/lightBlue";
 import SignIn from "./SignIn";
-import RegisterInstitution from './RegisterInstitution';
-import Dashboard from './Dashboard';
+import RegisterInstitution from "./RegisterInstitution";
+import Dashboard from "./Dashboard";
+import AddPatient from "./AddPatient";
 
 const theme = createMuiTheme({
   palette: {
@@ -19,11 +20,14 @@ function App() {
     <ThemeProvider theme={theme}>
       <Router>
         <Switch>
-        <Route path="/register-institution">
+          <Route path="/register-institution">
             <RegisterInstitution />
           </Route>
           <Route path="/dashboard">
             <Dashboard />
+          </Route>
+          <Route path="/add-patient">
+            <AddPatient />
           </Route>
           <Route path="/">
             <SignIn />
