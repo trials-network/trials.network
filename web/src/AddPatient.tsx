@@ -29,21 +29,40 @@ const useStyles = makeStyles(theme => ({
 
 export default function Dashboard() {
   const classes = useStyles(),
+    [name, setName] = useState(""),
+    [id, setId] = useState(""),
+    [ethnicity, setEthnicity] = useState(""),
     [gender, setGender] = useState(null),
     handleGenderChange = (e: any) => setGender(e.target.value);
 
   return (
     <Shell>
       <Container maxWidth="sm" className={classes.container}>
-        <form className={classes.form} noValidate>
+        <form
+          className={classes.form}
+          noValidate
+          onSubmit={e => {
+            e.preventDefault();
+            e.stopPropagation();
+            console.log("submit");
+            console.log({
+              name,
+              id,
+              gender,
+              ethnicity
+            });
+            // TODO
+          }}
+        >
           <TextField
             variant="outlined"
             margin="normal"
             required
             fullWidth
-            id="name"
+            value={name}
+            onChange={e => setName(e.target.value)}
             label="Name"
-            name="name"
+            helperText="Will be kept anonymous"
             autoFocus
           />
           <TextField
@@ -51,9 +70,9 @@ export default function Dashboard() {
             margin="normal"
             required
             fullWidth
-            id="id"
+            value={id}
+            onChange={e => setId(e.target.value)}
             label="ID"
-            name="id"
           />
           <FormControl component="fieldset" className={classes.gender} required>
             <FormLabel component="legend">Gender</FormLabel>
@@ -81,9 +100,9 @@ export default function Dashboard() {
             margin="normal"
             required
             fullWidth
-            id="ethnicity"
+            value={ethnicity}
+            onChange={e => setEthnicity(e.target.value)}
             label="Ethnicity"
-            name="ethnicity"
           />
           <Button
             type="submit"
