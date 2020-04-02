@@ -37,7 +37,12 @@ export default function SignIn() {
         <Typography component="h1" variant="h5">
           Sign in to trials.network
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} noValidate onSubmit={e => {
+          e.preventDefault();
+          e.stopPropagation();
+          console.log('submit');
+          // TODO
+        }}>
           <TextField
             variant="outlined"
             margin="normal"

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link as RouterLink } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -6,6 +6,7 @@ import TextField from "@material-ui/core/TextField";
 import Link from "@material-ui/core/Link";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
+import Divider from "@material-ui/core/Divider";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 
@@ -17,6 +18,10 @@ const useStyles = makeStyles(theme => ({
     flexDirection: "column",
     alignItems: "center"
   },
+  divider: {
+    marginTop: theme.spacing(2),
+    marginBottom: theme.spacing(1)
+  },
   form: {
     width: "100%", // Fix IE 11 issue.
     marginTop: theme.spacing(1)
@@ -27,7 +32,17 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function SignIn() {
-  const classes = useStyles();
+  const classes = useStyles(),
+    [institutionName, setInstitutionName] = useState(""),
+    [addressLine1, setAddressLine1] = useState(""),
+    [addressLine2, setAddressLine2] = useState(""),
+    [postcode, setPostcode] = useState(""),
+    [country, setCountry] = useState(""),
+    [responsiblePerson, setResponsiblePerson] = useState(""),
+    [workEmail, setWorkEmail] = useState(""),
+    [phoneNumber, setPhoneNumber] = useState("");
+
+  // TODO - validation
 
   return (
     <Container component="main" maxWidth="xs">
@@ -36,15 +51,34 @@ export default function SignIn() {
         <Typography component="h1" variant="h5">
           Register Institution
         </Typography>
-        <form className={classes.form} noValidate>
+        <form
+          className={classes.form}
+          noValidate
+          onSubmit={e => {
+            e.preventDefault();
+            e.stopPropagation();
+            console.log("submit", {
+              institutionName,
+              addressLine1,
+              addressLine2,
+              postcode,
+              country,
+              responsiblePerson,
+              workEmail,
+              phoneNumber
+            });
+
+            // TODO
+          }}
+        >
           <TextField
             variant="outlined"
             margin="normal"
             required
             fullWidth
-            id="name"
-            label="Name"
-            name="name"
+            value={institutionName}
+            onChange={e => setInstitutionName(e.target.value)}
+            label="Institution Name"
             autoFocus
           />
           <TextField
@@ -52,27 +86,27 @@ export default function SignIn() {
             margin="normal"
             required
             fullWidth
-            name="address1"
+            value={addressLine1}
+            onChange={e => setAddressLine1(e.target.value)}
             label="Address Line 1"
-            id="address1"
             autoComplete="address-line1"
           />
           <TextField
             variant="outlined"
             margin="normal"
             fullWidth
-            name="address2"
+            value={addressLine2}
+            onChange={e => setAddressLine2(e.target.value)}
             label="Address Line 2"
-            id="address2"
             autoComplete="address-line2"
           />
           <TextField
             variant="outlined"
             margin="normal"
             fullWidth
-            name="postcode"
+            value={postcode}
+            onChange={e => setPostcode(e.target.value)}
             label="Post Code"
-            id="postcode"
             autoComplete="postal-code"
           />
           <TextField
@@ -80,10 +114,40 @@ export default function SignIn() {
             margin="normal"
             required
             fullWidth
-            name="country"
+            value={country}
+            onChange={e => setCountry(e.target.value)}
             label="Country"
-            id="country"
             autoComplete="country-name"
+          />
+          <Divider variant="middle" className={classes.divider} />
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            value={responsiblePerson}
+            onChange={e => setResponsiblePerson(e.target.value)}
+            label="Responsible Person"
+          />
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            value={workEmail}
+            onChange={e => setWorkEmail(e.target.value)}
+            label="Work Email"
+            autoComplete="email"
+          />
+          <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            fullWidth
+            value={phoneNumber}
+            onChange={e => setPhoneNumber(e.target.value)}
+            label="Phone Number"
+            autoComplete="tel"
           />
           <Button
             type="submit"
