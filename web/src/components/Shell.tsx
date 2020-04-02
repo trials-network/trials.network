@@ -160,7 +160,7 @@ export default function Shell({ children }: ShellProps) {
             <ListItemIcon>
               <PersonAddIcon />
             </ListItemIcon>
-            <ListItemText primary="Add Patient" />
+            <ListItemText primary="Add a Patient" />
           </ListItem>
         </List>
       </Drawer>
