@@ -1,0 +1,3 @@
+[submodule "server"]
+	path = server
+	url = git@github.com:trials-network/trials.network.api.git
