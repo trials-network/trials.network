@@ -21,48 +21,49 @@ import PersonAddIcon from "@material-ui/icons/PersonAdd";
 import { makeStyles } from "@material-ui/core";
 
 interface ShellProps {
+  title: string;
   children: any;
 }
 
 const drawerWidth = 200;
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
-    display: "flex"
+    display: "flex",
   },
   toolbar: {
-    paddingRight: 24 // keep right padding when drawer closed
+    paddingRight: 24, // keep right padding when drawer closed
   },
   toolbarIcon: {
     display: "flex",
     alignItems: "center",
     justifyContent: "flex-end",
     padding: "0 8px",
-    ...theme.mixins.toolbar
+    ...theme.mixins.toolbar,
   },
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
     transition: theme.transitions.create(["width", "margin"], {
       easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen
-    })
+      duration: theme.transitions.duration.leavingScreen,
+    }),
   },
   appBarShift: {
     marginLeft: drawerWidth,
     width: `calc(100% - ${drawerWidth}px)`,
     transition: theme.transitions.create(["width", "margin"], {
       easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen
-    })
+      duration: theme.transitions.duration.enteringScreen,
+    }),
   },
   menuButton: {
-    marginRight: 36
+    marginRight: 36,
   },
   menuButtonHidden: {
-    display: "none"
+    display: "none",
   },
   title: {
-    flexGrow: 1
+    flexGrow: 1,
   },
   drawerPaper: {
     position: "relative",
@@ -70,33 +71,33 @@ const useStyles = makeStyles(theme => ({
     width: drawerWidth,
     transition: theme.transitions.create("width", {
       easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen
-    })
+      duration: theme.transitions.duration.enteringScreen,
+    }),
   },
   drawerPaperClose: {
     overflowX: "hidden",
     transition: theme.transitions.create("width", {
       easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen
+      duration: theme.transitions.duration.leavingScreen,
     }),
     width: theme.spacing(7),
     [theme.breakpoints.up("sm")]: {
-      width: theme.spacing(9)
-    }
+      width: theme.spacing(9),
+    },
   },
   content: {
     flexGrow: 1,
     height: "100vh",
-    overflow: "auto"
+    overflow: "auto",
   },
   container: {
     paddingTop: theme.spacing(4),
-    paddingBottom: theme.spacing(4)
+    paddingBottom: theme.spacing(4),
   },
-  appBarSpacer: theme.mixins.toolbar
+  appBarSpacer: theme.mixins.toolbar,
 }));
 
-export default function Shell({ children }: ShellProps) {
+export default function Shell({ title, children }: ShellProps) {
   const classes = useStyles(),
     [open, setOpen] = useState(false),
     handleDrawerOpen = () => setOpen(true),
@@ -127,7 +128,7 @@ export default function Shell({ children }: ShellProps) {
             noWrap
             className={classes.title}
           >
-            Dashboard
+            {title}
           </Typography>
           <Button component={RouterLink} to="/" color="inherit">
             Log Out
@@ -139,7 +140,7 @@ export default function Shell({ children }: ShellProps) {
         classes={{
           paper: `${classes.drawerPaper} ${
             !open ? classes.drawerPaperClose : ""
-          }`
+          }`,
         }}
         open={open}
       >
@@ -175,5 +176,6 @@ export default function Shell({ children }: ShellProps) {
 }
 
 Shell.propTypes = {
-  children: PropTypes.node
+  title: PropTypes.string.isRequired,
+  children: PropTypes.node,
 };

@@ -27,7 +27,7 @@ export default function Dashboard() {
   const classes = useStyles();
 
   return (
-    <Shell>
+    <Shell title="Dashboard">
       <Container maxWidth="lg" className={classes.container}>
         <Paper className={classes.paper}>
           <Typography

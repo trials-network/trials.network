@@ -8,6 +8,8 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormLabel from "@material-ui/core/FormLabel";
 import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
+import InputLabel from "@material-ui/core/InputLabel";
+import Select from "@material-ui/core/Select";
 import { makeStyles } from "@material-ui/core";
 import DateFnsUtils from "@date-io/date-fns";
 import subWeeks from "date-fns/subWeeks";
@@ -33,6 +35,10 @@ const useStyles = makeStyles((theme) => ({
   },
   gender: {
     marginTop: theme.spacing(2),
+  },
+  ethnicityControl: {
+    marginTop: theme.spacing(1),
+    minWidth: 120,
   },
   submit: {
     margin: theme.spacing(2, 0),
@@ -67,10 +73,14 @@ export default function Dashboard() {
       if (date) {
         setHospitalizationDate(date);
       }
-    };
+    },
+    handleEthnicityChange = (e: any) => setEthnicity(e.target.value),
+    handleConditionsChange = (e: any) => setConditions(e.target.value),
+    handleMedicationsChange = (e: any) => setMedications(e.target.value),
+    handleAllergiesChange = (e: any) => setAllergies(e.target.value);
 
   return (
-    <Shell>
+    <Shell title="Add a Patient">
       <Container maxWidth="sm" className={classes.container}>
         <Paper className={classes.paper}>
           <form
@@ -89,7 +99,7 @@ export default function Dashboard() {
                 hospitalizationDate,
                 conditions,
                 medications,
-                allergies
+                allergies,
               });
               // TODO
             }}
@@ -169,21 +179,35 @@ export default function Dashboard() {
                 />
               </div>
             </MuiPickersUtilsProvider>
-            <TextField
+            <FormControl
               variant="outlined"
-              margin="normal"
+              className={classes.ethnicityControl}
               required
-              fullWidth
-              value={ethnicity}
-              onChange={(e) => setEthnicity(e.target.value)}
-              label="Ethnicity"
-            />
+            >
+              <InputLabel htmlFor="ethnicity">Ethnicity</InputLabel>
+              <Select
+                native
+                value={ethnicity}
+                onChange={handleEthnicityChange}
+                label="Ethnicity"
+                inputProps={{
+                  id: "ethnicity",
+                }}
+              >
+                <option aria-label="Select" value="" />
+                <option>Asian</option>
+                <option>Black</option>
+                <option>Mixed</option>
+                <option>Other</option>
+                <option>White</option>
+              </Select>
+            </FormControl>
             <TextField
               variant="outlined"
               margin="normal"
               fullWidth
               value={conditions}
-              onChange={(e) => setConditions(e.target.value)}
+              onChange={handleConditionsChange}
               label="Pre-existing conditions"
               multiline
             />
@@ -192,7 +216,7 @@ export default function Dashboard() {
               margin="normal"
               fullWidth
               value={medications}
-              onChange={(e) => setMedications(e.target.value)}
+              onChange={handleMedicationsChange}
               label="Pre-existing medications"
               multiline
             />
@@ -201,7 +225,7 @@ export default function Dashboard() {
               margin="normal"
               fullWidth
               value={allergies}
-              onChange={(e) => setAllergies(e.target.value)}
+              onChange={handleAllergiesChange}
               label="Allergies"
               multiline
             />
