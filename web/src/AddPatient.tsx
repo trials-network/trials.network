@@ -6,6 +6,7 @@ import TextField from "@material-ui/core/TextField";
 import FormControl from "@material-ui/core/FormControl";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormLabel from "@material-ui/core/FormLabel";
+import FormHelperText from "@material-ui/core/FormHelperText";
 import Radio from "@material-ui/core/Radio";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import InputLabel from "@material-ui/core/InputLabel";
@@ -47,6 +48,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Dashboard() {
   const classes = useStyles(),
+    [validate, setValidate] = useState(false),
     [name, setName] = useState(""),
     [gender, setGender] = useState(null),
     [birthDate, setBirthDate] = useState(subYears(new Date(), 70)),
@@ -58,6 +60,9 @@ export default function Dashboard() {
     [conditions, setConditions] = useState(""),
     [medications, setMedications] = useState(""),
     [allergies, setAllergies] = useState(""),
+    nameHasError = name.trim().length === 0,
+    genderHasError = gender === null,
+    ethnicityHasError = ethnicity === "",
     handleGenderChange = (e: any) => setGender(e.target.value),
     handleBirthDateChange = (date: MaterialUiPickersDate | null) => {
       if (date) {
@@ -89,19 +94,24 @@ export default function Dashboard() {
             onSubmit={(e) => {
               e.preventDefault();
               e.stopPropagation();
-              console.log("submit");
-              console.log({
-                name,
-                gender,
-                ethnicity,
-                birthDate,
-                symptomsStartDate,
-                hospitalizationDate,
-                conditions,
-                medications,
-                allergies,
-              });
-              // TODO
+
+              if (!nameHasError && !genderHasError && !ethnicityHasError) {
+                console.log("submit");
+                console.log({
+                  name,
+                  gender,
+                  ethnicity,
+                  birthDate,
+                  symptomsStartDate,
+                  hospitalizationDate,
+                  conditions,
+                  medications,
+                  allergies,
+                });
+                return;
+              }
+
+              setValidate(true);
             }}
           >
             <TextField
@@ -113,10 +123,17 @@ export default function Dashboard() {
               onChange={(e) => setName(e.target.value)}
               label="Name and Surname"
               autoFocus
+              error={validate && nameHasError}
+              helperText={
+                validate && nameHasError
+                  ? "Please provide patient's name and surname"
+                  : null
+              }
             />
             <FormControl
               component="fieldset"
               className={classes.gender}
+              error={validate && genderHasError}
               required
             >
               <FormLabel component="legend">Gender</FormLabel>
@@ -137,6 +154,7 @@ export default function Dashboard() {
                   label="Male"
                 />
               </RadioGroup>
+              {validate && genderHasError ? <FormHelperText>Please provide patient's gender</FormHelperText> : null}
             </FormControl>
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
               <div>
@@ -183,6 +201,7 @@ export default function Dashboard() {
               variant="outlined"
               className={classes.ethnicityControl}
               required
+              error={validate && ethnicityHasError}
             >
               <InputLabel htmlFor="ethnicity">Ethnicity</InputLabel>
               <Select
@@ -201,6 +220,7 @@ export default function Dashboard() {
                 <option>Other</option>
                 <option>White</option>
               </Select>
+              {validate && ethnicityHasError ? <FormHelperText>Please provide patient's ethnicity</FormHelperText> : null}
             </FormControl>
             <TextField
               variant="outlined"
