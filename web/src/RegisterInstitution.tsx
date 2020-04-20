@@ -10,29 +10,30 @@ import Divider from "@material-ui/core/Divider";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),
     padding: theme.spacing(2),
     display: "flex",
     flexDirection: "column",
-    alignItems: "center"
+    alignItems: "center",
   },
   divider: {
     marginTop: theme.spacing(2),
-    marginBottom: theme.spacing(1)
+    marginBottom: theme.spacing(1),
   },
   form: {
     width: "100%", // Fix IE 11 issue.
-    marginTop: theme.spacing(1)
+    marginTop: theme.spacing(1),
   },
   submit: {
-    margin: theme.spacing(2, 0)
-  }
+    margin: theme.spacing(2, 0),
+  },
 }));
 
 export default function SignIn() {
   const classes = useStyles(),
+    [validate, setValidate] = useState(false),
     [institutionName, setInstitutionName] = useState(""),
     [addressLine1, setAddressLine1] = useState(""),
     [addressLine2, setAddressLine2] = useState(""),
@@ -40,9 +41,13 @@ export default function SignIn() {
     [country, setCountry] = useState(""),
     [responsiblePerson, setResponsiblePerson] = useState(""),
     [workEmail, setWorkEmail] = useState(""),
-    [phoneNumber, setPhoneNumber] = useState("");
-
-  // TODO - validation
+    [phoneNumber, setPhoneNumber] = useState(""),
+    institutionNameHasError = institutionName.trim().length === 0,
+    addressLine1HasError = addressLine1.trim().length === 0,
+    countryHasError = country.trim().length === 0,
+    responsiblePersonHasError = responsiblePerson.trim().length === 0,
+    workEmailHasError = workEmail.trim().length === 0,
+    phoneNumberHasError = phoneNumber.trim().length === 0;
 
   return (
     <Container component="main" maxWidth="xs">
@@ -54,21 +59,32 @@ export default function SignIn() {
         <form
           className={classes.form}
           noValidate
-          onSubmit={e => {
+          onSubmit={(e) => {
             e.preventDefault();
             e.stopPropagation();
-            console.log("submit", {
-              institutionName,
-              addressLine1,
-              addressLine2,
-              postcode,
-              country,
-              responsiblePerson,
-              workEmail,
-              phoneNumber
-            });
 
-            // TODO
+            if (
+              !institutionNameHasError &&
+              !addressLine1HasError &&
+              !countryHasError &&
+              !responsiblePersonHasError &&
+              !workEmailHasError &&
+              !phoneNumberHasError
+            ) {
+              console.log("submit", {
+                institutionName,
+                addressLine1,
+                addressLine2,
+                postcode,
+                country,
+                responsiblePerson,
+                workEmail,
+                phoneNumber,
+              });
+              return;
+            }
+
+            setValidate(true);
           }}
         >
           <TextField
@@ -77,9 +93,15 @@ export default function SignIn() {
             required
             fullWidth
             value={institutionName}
-            onChange={e => setInstitutionName(e.target.value)}
+            onChange={(e) => setInstitutionName(e.target.value)}
             label="Institution Name"
             autoFocus
+            error={validate && institutionNameHasError}
+            helperText={
+              validate && institutionNameHasError
+                ? "Please provide institution name"
+                : null
+            }
           />
           <TextField
             variant="outlined"
@@ -87,16 +109,22 @@ export default function SignIn() {
             required
             fullWidth
             value={addressLine1}
-            onChange={e => setAddressLine1(e.target.value)}
+            onChange={(e) => setAddressLine1(e.target.value)}
             label="Address Line 1"
             autoComplete="address-line1"
+            error={validate && addressLine1HasError}
+            helperText={
+              validate && addressLine1HasError
+                ? "Please provide institution address"
+                : null
+            }
           />
           <TextField
             variant="outlined"
             margin="normal"
             fullWidth
             value={addressLine2}
-            onChange={e => setAddressLine2(e.target.value)}
+            onChange={(e) => setAddressLine2(e.target.value)}
             label="Address Line 2"
             autoComplete="address-line2"
           />
@@ -105,7 +133,7 @@ export default function SignIn() {
             margin="normal"
             fullWidth
             value={postcode}
-            onChange={e => setPostcode(e.target.value)}
+            onChange={(e) => setPostcode(e.target.value)}
             label="Post Code"
             autoComplete="postal-code"
           />
@@ -115,9 +143,15 @@ export default function SignIn() {
             required
             fullWidth
             value={country}
-            onChange={e => setCountry(e.target.value)}
+            onChange={(e) => setCountry(e.target.value)}
             label="Country"
             autoComplete="country-name"
+            error={validate && countryHasError}
+            helperText={
+              validate && countryHasError
+                ? "Please provide country where the institution is based"
+                : null
+            }
           />
           <Divider variant="middle" className={classes.divider} />
           <TextField
@@ -126,8 +160,14 @@ export default function SignIn() {
             required
             fullWidth
             value={responsiblePerson}
-            onChange={e => setResponsiblePerson(e.target.value)}
+            onChange={(e) => setResponsiblePerson(e.target.value)}
             label="Responsible Person"
+            error={validate && responsiblePersonHasError}
+            helperText={
+              validate && responsiblePersonHasError
+                ? "Please provide the full name of the responsible person"
+                : null
+            }
           />
           <TextField
             variant="outlined"
@@ -135,9 +175,15 @@ export default function SignIn() {
             required
             fullWidth
             value={workEmail}
-            onChange={e => setWorkEmail(e.target.value)}
+            onChange={(e) => setWorkEmail(e.target.value)}
             label="Work Email"
             autoComplete="email"
+            error={validate && workEmailHasError}
+            helperText={
+              validate && workEmailHasError
+                ? "Please provide the work email address of the responsible person"
+                : null
+            }
           />
           <TextField
             variant="outlined"
@@ -145,9 +191,15 @@ export default function SignIn() {
             required
             fullWidth
             value={phoneNumber}
-            onChange={e => setPhoneNumber(e.target.value)}
+            onChange={(e) => setPhoneNumber(e.target.value)}
             label="Phone Number"
             autoComplete="tel"
+            error={validate && phoneNumberHasError}
+            helperText={
+              validate && phoneNumberHasError
+                ? "Please provide the phone number of the responsible person"
+                : null
+            }
           />
           <Button
             type="submit"
